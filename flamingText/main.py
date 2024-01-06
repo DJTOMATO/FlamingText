@@ -6,17 +6,25 @@ import json
 
 class FlamingText:
     def __init__(self, **kwargs):
-        self._url = "https://flamingtext.com/net-fu/image_output.cgi?_comBuyRedirect=false&imageWidth=400&imageHeight=150"
+        self._base_url = "https://flamingtext.com/net-fu/image_output.cgi"
         self._kwargs = kwargs
 
-    def _generateParams(self):
-        if len(self._kwargs) == 0:
-            raise Exception("Parameter name and script are required")
-        return "&" + urlencode(dict(self._kwargs))
-
     def _generateURL(self):
-        params = self._generateParams()
-        return self._url + params
+        if not self._kwargs:
+            raise Exception("Parameter name and script are required")
+
+        # Add common parameters
+        params = {
+            "_comBuyRedirect": "false",
+            "imageWidth": "400",
+            "imageHeight": "150",
+        }
+
+        # Add user-provided parameters
+        params.update(self._kwargs)
+
+        # Construct the URL with query parameters
+        return f"{self._base_url}?{urlencode(params)}"
 
     async def process(self):
         url = self._generateURL()
@@ -30,10 +38,12 @@ async def main():
     result = await obj.process()
 
     # Parse the result as JSON
-    result_json = json.loads(result)
-
-    # Print the "src" value
-    print(result_json.get("src"))
+    try:
+        result_json = json.loads(result)
+        # Print the "src" value
+        print(result_json.get("src"))
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
 
 
 if __name__ == "__main__":

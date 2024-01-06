@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = '0.0.7'
-DESCRIPTION = 'Unofficial API of flamingtext.com'
-long_description = 'FlamingText is free online logo generator that anyone can use to create a great logo in minutes! Just select one of our logo designs, and get started now!'
+VERSION = "0.0.7"
+DESCRIPTION = "Unofficial API of flamingtext.com"
+long_description = "FlamingText is free online logo generator that anyone can use to create a great logo in minutes! Just select one of our logo designs, and get started now!"
 
 here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
@@ -20,8 +20,8 @@ setup(
     description=DESCRIPTION,
     long_description=long_description,
     packages=find_packages(),
-    install_requires=["requests"],
-    keywords=['python', 'effects', 'text', 'flamingtext'],
+    install_requires=["aiohttp"],
+    keywords=["python", "effects", "text", "flamingtext"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Education",
@@ -29,5 +29,5 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
-    ]
+    ],
 )
