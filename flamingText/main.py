@@ -9,7 +9,7 @@ class FlamingText:
         self._base_url = "https://flamingtext.com/net-fu/image_output.cgi"
         self._kwargs = kwargs
 
-    def _generateURL(self):
+    async def _generateURL(self):
         if not self._kwargs:
             raise Exception("Parameter name and script are required")
 
