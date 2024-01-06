@@ -4,9 +4,8 @@ from urllib.parse import urlencode
 
 
 class FlamingText:
-    _url = "https://flamingtext.com/net-fu/image_output.cgi?_comBuyRedirect=false&imageWidth=400&imageHeight=150"
-
     def __init__(self, **kwargs):
+        self._url = "https://flamingtext.com/net-fu/image_output.cgi?_comBuyRedirect=false&imageWidth=400&imageHeight=150"
         self._kwargs = kwargs
 
     def _generateParams(self):
