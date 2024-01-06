@@ -1,6 +1,7 @@
 import aiohttp
 import asyncio
 from urllib.parse import urlencode
+import json
 
 
 class FlamingText:
@@ -27,7 +28,12 @@ class FlamingText:
 async def main():
     obj = FlamingText(text="Firdavs-coder", script="fluffy-logo")
     result = await obj.process()
-    print(result)
+
+    # Parse the result as JSON
+    result_json = json.loads(result)
+
+    # Print the "src" value
+    print(result_json.get("src"))
 
 
 if __name__ == "__main__":
